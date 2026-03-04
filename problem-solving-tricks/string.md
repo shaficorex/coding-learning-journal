@@ -39,3 +39,6 @@ public:
 };
 ```
 
+### time complixity ###
+to sort one string takes O(nlogn)   here n=size of one string
+if array size is l_max then total complixity will be O(nlogn * l_max)
