@@ -45,14 +45,20 @@ Given a string, determine the frequency of each character and return the charact
 # Key Learning Points
 
 > [!IMPORTANT]
-## 1. `unordered_map` Cannot Be Sorted 
-- `unordered_map` stores elements using a **hash table**, so its iterators are **not random-access iterators**.
-- `sort()` requires random-access iterators.
-- Therefore, sorting directly is invalid.
+<details>
+    <summary> Why `unordered_map` Cannot Be Sorted</summary>
 
-### Correct Approach:
-1. Move elements into a vector.
-2. Sort the vector.
+`unordered_map` cannot be sorted using `std::sort()` because it **does not provide random access iterators**.
+
+The `std::sort()` algorithm requires **random access iterators** to jump between elements (e.g., `it + n`). However, `unordered_map` only provides **forward iterators**, which allow traversal in one direction (`it++`) but not direct access to arbitrary positions.
+
+Additionally, `unordered_map` is implemented using a **hash table**, where elements are stored in buckets based on their hash value. Therefore, elements are **not stored in any meaningful order**.
+
+**Correct approach when sorting is required:**
+
+First copy the elements into a `vector`, then apply sorting.
+</details>
+
 
 >  [!IMPORTANT]
 ## 2. Custom Comparator Function
@@ -64,10 +70,28 @@ bool cmp(Type a, Type b)
     return condition;
 }
 ```
->  [!IMPORTANT]
-- Rules:
-  - Return true if `a` should come before `b`.
-  - Return false otherwise.
+
+<details>
+    <summary>  Understanding the `sort()` Function and Comparator Behavior</summary>
+    `sort()` uses a compare function to decide whether an element `a` should come before element `b`.
+
+- If the comparator returns **true**, then `a` will be placed before `b`.
+- If it returns **false**, then `a` will not go before `b`, so `b` will come first.
+
+## Returning `a > b`
+- When we return `a > b`, the function returns **true** when `a` is bigger than `b`. This means:
+  - **`a` will go first** (descending order).
+- When `a` is smaller than `b`, it returns **false**, so:
+  - **`b` will go first**.
+
+## Returning `a < b`
+- When we return `a < b`, the function returns **true** when `a` is smaller than `b`. This means:
+  - **`a` will go first** (ascending order).
+- When `a` is bigger than `b`, it returns **false**, so:
+  - **`b` will go first**.
+
+</details>
+
 
   >  [!IMPORTANT]
 
@@ -105,9 +129,10 @@ vector<pair<char,int>> vec(mpp.begin(), mpp.end());
 Now the vector can be sorted.
 
 
-## Full implimentation ##
 
-```cpp
+<details>
+    <summary> Full implimentation </summary>
+    ```cpp
 class Solution {
    public:
     static bool cmp(pair<char, int> a, pair<char, int> b) {
@@ -137,6 +162,8 @@ class Solution {
     }
 };
 ```
+</details>
+
 
 # Algorithm Workflow
 
@@ -172,19 +199,6 @@ Let:
 
 `O(n + k log k)`
 
-
-### Why `unordered_map` Cannot Be Sorted
-
-`unordered_map` cannot be sorted using `std::sort()` because it **does not provide random access iterators**.
-
-The `std::sort()` algorithm requires **random access iterators** to jump between elements (e.g., `it + n`). However, `unordered_map` only provides **forward iterators**, which allow traversal in one direction (`it++`) but not direct access to arbitrary positions.
-
-Additionally, `unordered_map` is implemented using a **hash table**, where elements are stored in buckets based on their hash value. Therefore, elements are **not stored in any meaningful order**.
-
-**Correct approach when sorting is required:**
-
-
-First copy the elements into a `vector`, then apply sorting.
 
 
 ## Key Pattern Learned
