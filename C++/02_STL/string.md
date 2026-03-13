@@ -107,21 +107,89 @@ substr() creates a new string and copies k characters into it.
 
 s[1] = 'B'; //O(1)
 ```
-Append character:
-```cpp
-//slow
+# Append character:
+<details>
+  <summary><b>Correct Ways to Add Multiple Characters</b></summary>
 
-s = s + 'N';
+  # Method 1 — Using +=
 
-//better
-
-s += 'N';
-
-//even better
-
-s.push_back('N');
-
+```csharp
+string str = "Hello";
+str += "[.]";
 ```
+
+**Result:**
+
+Hello[.]
+
+This works because `+=` supports string concatenation.
+
+---
+
+# Method 2 — Using `append()`
+
+```csharp
+string str = "Hello";
+str.append("[.]")
+```
+
+**Result:**
+
+Hello[.]
+
+
+# Important Notes
+
+- `push_back()` → adds one character
+- `+=` → adds strings or characters
+- `append()` → adds strings or characters
+
+## Function signatures:
+
+```cpp
+str.push_back(char c);
+str += string;
+str.append(string);
+```
+
+## Common Mistakes
+1. Trying to insert multiple characters using `push_back()`
+
+**Incorrect:**
+
+```cpp
+str.push_back("[.]");
+```
+**Reason:**
+
+`push_back()` expects a `char`, not a `string`.
+
+2. Confusing `char` and `string`
+- `'.'`   // char
+- `'"."'`   // string (note: in C++, double quotes denote a string)
+
+## Key Takeaways
+- `push_back()` is limited to inserting a **single character**.
+- To insert **multiple characters or substrings**, use `+=` or `append()`.
+- Understanding the difference between `char` and `string` is essential when working with C++ strings.
+
+
+</details>
+
+```cpp
+    //slow
+    
+    s = s + 'N';
+    
+    //better
+    
+    s += 'N';  // can do : s += "hello";
+    
+    //even better
+    
+    s.push_back('N');   // can not do : s.push_back("hello");   because it allows pushing single character
+```
+
 ### Why?
 
 Because s = s + 'N' may create a new string copy.
