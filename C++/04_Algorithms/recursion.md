@@ -207,3 +207,104 @@ This can lead to exponential complexity.
 ## Typical Complexity:
 - Time: O(N)
 - Space: O(N) due to recursion stack.
+
+<details>
+    <summary><b>How to Solve Problems Using Recursion</b></summary>
+
+## Core Idea
+Recursion solves a problem by repeatedly calling the same function with a smaller input until a base condition is reached.
+
+## 1. Convert Loop Logic to Recursion
+Many problems solved with loops can also be solved using recursion.
+
+**Conversion idea:**
+- Loop condition → Base case
+- Loop update → Recursive call
+
+**Example concept:**
+```c
+for(i = 0; i < n; i++)
+```
+becomes
+```c
+if(i == n) return;
+solve(i + 1);
+```
+
+## 2. Base Case
+The base case is the condition that stops recursion.
+It usually comes from:
+- the loop stopping condition
+- a break or termination condition inside the loop
+
+If a recursive function does not reach a base case, it will continue calling itself and eventually cause a stack overflow.
+
+## 3. Recursive Progress
+Every recursive call must move the problem closer to the base case.
+
+**Typical progression examples:**
+- `i` → `i + 1`
+- `n` → `n - 1`
+- `(i, j)` → `(i + 1, j - 1)`
+
+This guarantees that recursion eventually stops.
+
+# 4. Example: Prime Number Check Using Recursion
+
+```cpp
+class Solution {
+public:
+    bool isPrime(int div, int num) {
+        if (num <= 1) return false;
+        else if (div * div > num)
+            return true;
+        else if (num % div == 0)
+            return false;
+        return isPrime(div + 1, num);
+    }
+
+    bool checkPrime(int num) {
+        return isPrime(2, num);
+    }
+};
+```
+## Logic
+
+- Start checking divisibility from 2.
+- If `num <= 1`, the number is not prime.
+- If `div * div > num`, no divisor exists up to √`num` → the number is prime.
+- If `num % div == 0`, a divisor is found → not prime.
+- Otherwise, continue checking the next divisor recursively.
+
+
+  # 5. Two-Pointer Recursion Pattern
+
+Some problems require working from both ends of a structure.
+
+Use two indices:
+
+- `i` → start position
+- `j` → end position
+
+## Base case
+
+`i >= j`
+
+When the pointers meet or cross, recursion stops.
+
+This pattern is commonly used for:
+- Palindrome checking
+- Symmetric array comparison
+- Problems involving both ends of a structure
+
+## Key Points
+
+- Recursion works by solving smaller versions of the same problem.
+- A correct recursive function must contain:
+  - a base case
+  - a recursive call
+  - progress toward termination
+- Loop termination conditions often translate into recursion base cases.
+- Two-pointer recursion is useful for problems involving start and end comparisons.
+- Ensure every execution path returns a value.
+</details>
