@@ -374,3 +374,18 @@ T(n) = T(n-1) + T(n-2)
 - It forms the foundation for learning Dynamic Programming.
 
 </details>
+
+
+<details>
+    <summary><b>How to add digits of a number using recursion</b></summary>
+
+```cpp
+    int sum(int num)
+    {
+        if(num==0) return 0;
+
+        return num%10 + sum(num/10);   
+    }
+    
+```
+</details>
