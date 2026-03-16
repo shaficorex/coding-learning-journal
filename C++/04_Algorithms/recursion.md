@@ -308,3 +308,69 @@ This pattern is commonly used for:
 - Two-pointer recursion is useful for problems involving start and end comparisons.
 - Ensure every execution path returns a value.
 </details>
+
+
+<details>
+    <summary> <b>Multi-Level Recursion solving fibonacci</b> </summary>
+    <img width="491" height="302" alt="multi" src="https://github.com/user-attachments/assets/c1ee164c-6ae7-465e-8b7c-a0d9c22dba3a" />
+
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int fibonacci(int n) {
+    // Base cases
+    if (n == 0) return 0;
+    if (n == 1) return 1;
+
+    // Recursive calls
+    return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+int main() {
+    int n = 4;
+    cout << fibonacci(n);
+    return 0;
+}
+```
+
+# Recursion follows Depth-First Execution
+
+- It goes deep into the first call, finishes it, then comes back and executes the second call.
+
+- It is not parallel.
+
+- It is not “finish entire first branch globally, then start second”.
+
+## One-line understanding
+
+The second recursive call starts after the first call returns, not after the whole recursion tree finishes.
+
+
+# Time Complexity Analysis
+
+Each function call generates 2 more calls.
+
+Total calls grow like a binary tree.
+
+**Recurrence relation:**
+
+```
+T(n) = T(n-1) + T(n-2)
+```
+
+**Approximate complexity:** O(2^n) (exponential)
+
+**Space complexity:** O(n) (due to recursion stack)
+
+
+# Key Takeaways
+
+- Fibonacci recursion is a multi-level recursion problem.
+- It demonstrates recursive tree expansion.
+- Time complexity is exponential (`O(2^n)`).
+- It is inefficient due to overlapping subproblems.
+- It forms the foundation for learning Dynamic Programming.
+
+</details>
