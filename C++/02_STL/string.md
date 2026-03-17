@@ -19,9 +19,10 @@ Without understanding how `std::string` works internally, performance optimizati
 
 ---
 
-## 🔹 Core Theory
+<details>
+  <summary><b>Core Theory</b></summary>
 
-### 1️⃣ How `std::string` Stores Data
+  ### 1️⃣ How `std::string` Stores Data
 
 `std::string` stores characters in **contiguous memory**, similar to a dynamic array.
 
@@ -66,6 +67,7 @@ int val = 'A';   // 65
 ```
 ---
 
+
 ## 3. Substring
 
 ### Syntax
@@ -100,14 +102,9 @@ substr() creates a new string and copies k characters into it.
 ---
 
 
-### 4. Modification
+</details>
 
-```cpp
-//Change character:
 
-s[1] = 'B'; //O(1)
-```
-# Append character:
 <details>
   <summary><b>Correct Ways to Add Multiple Characters</b></summary>
 
@@ -176,7 +173,12 @@ str.push_back("[.]");
 
 </details>
 
-```cpp
+
+
+<details>
+  <summary>Correct way to add character</summary>
+
+  ```cpp
     //slow
     
     s = s + 'N';
@@ -208,7 +210,6 @@ It internally maintains:
 
 ---
 
----
 
 ### 🔁 When Capacity Becomes Full
 
@@ -235,9 +236,13 @@ This resizing strategy is why `std::string` behaves efficiently in most cases.
 
 ---
 
-  ## 🔹 Step-by-Step Logical Thinking
+</details>
 
-When solving string problems, ask yourself:
+
+<details>
+  <summary><b>Logical Thinking</b></summary>
+
+  When solving string problems, ask yourself:
 
 - Can I use index access?
 - Do I need ASCII conversion?
@@ -249,10 +254,13 @@ When solving string problems, ask yourself:
 
 Think performance first.
 
----
+</details>
 
-### Clean C++ Implementation Example
-```cpp
+
+<details>
+  <summary>C++ string Implementation Example</summary>
+
+  ```cpp
 #include <iostream>
 #include <string>
 using namespace std;
@@ -312,8 +320,11 @@ int main() {
   → Can increase time complexity to **O(n²)** and cause TLE.
 
 
----
+</details>
+ 
 
+
+---
 
   ## 🔹 Key Learnings
 
