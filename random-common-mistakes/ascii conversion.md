@@ -1,5 +1,5 @@
-<details>
-  <summary><b>ASCII conversion mistakes</b></summary><br>
+
+# ASCII conversion mistakes
 
   ` int num='a'-'3'; `        
 ` char ch='a'-'3'; ` 
@@ -18,5 +18,4 @@
 ` int num= 46; `     46   
 ` char ch= 46; `     '.'
 
-</details>
 
