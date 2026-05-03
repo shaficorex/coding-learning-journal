@@ -132,6 +132,7 @@ Now the vector can be sorted.
 
 <details>
     <summary> Full implimentation </summary>
+    
     ```cpp
 class Solution {
    public:
